@@ -1,9 +1,9 @@
 const express = require('express');
-const app = require('app'); //不要？
+
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const Customer = require('./model').Customer;
+const Customer = require('../models').Customer;
 
 passport.use(new LocalStrategy({
     usernameField: 'email',
