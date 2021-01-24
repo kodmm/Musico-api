@@ -1,6 +1,6 @@
 'use strict';
 const {
-  Model
+  Model, DataTypes
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   //   class Customer extends Model {
@@ -14,42 +14,44 @@ module.exports = (sequelize, DataTypes) => {
   //     }
   //   };
   //   Customer.init({
-  //     name: DataTypes.STRING,
-  //     email: DataTypes.STRING,
-  //     rememberToken: DataTypes.STRING
+  //     familyName: DataTypes.STRING,
+  //     givenName: DataTypes.STRING,
+  //     emailValue: DataTypes.STRING,
+  //     emailType: DataTypes.STRING
+      
   //   }, {
   //     sequelize,
+  //     paranoid: true,
   //     modelName: 'Customer',
   //   });
   //   return Customer;
   // };
 
   const Customer = sequelize.define('Customer', {
-    name: {
+    familyName: {
       type: DataTypes.STRING,
-      validate: {
-        notEmpty: {
-          msg: 'nameは必ず入力してください。'
-        }
+    },
+    givenName: {
+      type: DataTypes.STRING,
+    },
+    fullName: {
+      type: DataTypes.VIRTUAL,
+      get() {
+        return `${this.familyName} ${this.fullName}`;
+      },
+      set(value) {
+        throw new Error(`Do not try to set the `fullName` value!`);
       }
     },
-    email: {
+    emailValue: {
       type: DataTypes.STRING,
-      validate: {
-        isEmail: {
-          msg: 'メールアドレスを入力してください。'
-        }
-      }
     },
-    password: {
+    emailType: {
       type: DataTypes.STRING,
-      validate: {
-        notEmpty: {
-          msg: 'passwordを必ず入力してください'
-        }
-      }
-    }
-  }, {});
+    },
+  }, {
+    paranoid: true
+  });
   Customer.associate = function(models) {
     // associations can be defined here
   };

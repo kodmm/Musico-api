@@ -37,6 +37,6 @@ const authMiddleWare = (req, res, next) => {
 }
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/v1/users', usersRouter);
 
 module.exports = app;

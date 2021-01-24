@@ -8,13 +8,16 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
+      familyName: {
         type: Sequelize.STRING
       },
-      email: {
+      givenName: {
         type: Sequelize.STRING
       },
-      rememberToken: {
+      emailValue: {
+        type: Sequelize.STRING
+      },
+      emailType: {
         type: Sequelize.STRING
       },
       createdAt: {
