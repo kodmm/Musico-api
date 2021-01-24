@@ -3,13 +3,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var passport = require('./routes/auth');
+var passport = require('passport');
 var session = require('express-session');
 var flash = require('connect-flash');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var authRouter = require('./routes/auth');
 var app = express();
 
 app.use(logger('dev'));
@@ -38,5 +38,5 @@ const authMiddleWare = (req, res, next) => {
 
 app.use('/', indexRouter);
 app.use('/api/v1/users', usersRouter);
-
+app.use('/api/', authRouter);
 module.exports = app;

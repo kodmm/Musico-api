@@ -1,40 +1,54 @@
-const express = require('express');
+var express = require('express');
+var router = express.Router();
+var passport = require('passport');
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var db = require('../models/index');
 
-const bcrypt = require('bcrypt');
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const Customer = require('../models').Customer;
 
-passport.use(new LocalStrategy({
-    usernameField: 'email',
-    passwordField: 'password'
-}, (email, password, done) => {
-    
-    Customer.findOne({
-        where: {
-            email: email
-        }
-    })
-    .then(customer => {
-        if (customer && bcrypt.compareSync(password, customer.password)) {
-            return done(null, customer); //Successfulyy login
 
-        }
+passport.use(new GoogleStrategy({
+    clientID: '732532259790-lomstklejr6bp0idtqllibkt139dlef1.apps.googleusercontent.com',
+    clientSecret: '_WD3DNlvPDrFenGFm6QNnRR-',
+    callbackURL: 'http://localhost:3001/api/auth/google/callback'
+},
+    async function(accessToken, refreshToken, profile, done){
+        await db.Customer.findOrCreate({ 
+            where: { email: profile.emails[0].value},
+            defaults: {
+                googleId: profile.id,
+                familyName: profile.name.familyName,
+                givenName: profile.name.givenName,
+                email: profile.emails[0].value, 
+            }
+        }).then((user, created) => {   
+            return done(null, user[0].dataValues);
+        }).catch(err => console.log(`ERRR ${err}`));
+        
+    }
+));
 
-        throw new Error()
 
-    })
-    .catch(error => {
-        return done(null, false, { message: '認証情報(password)と一致するレコード(データ)がありません。'});
-    });
-}));
+router.get('/auth/google', 
+    passport.authenticate('google', { scope: ['email', 'profile']}));
 
-//Session
-passport.serializeUser((user, done) => {
+router.get('/auth/google/callback', 
+    passport.authenticate('google', { failureRedirect: '/googleapi/failured/login'}),
+    function(req, res) {
+        
+        console.log(`json:   ${req.user}`);
+        res.json(req.user)
+    }
+);
+
+passport.serializeUser(function(user, done) {
+    console.log(`session: ${user}`)
     done(null, user);
-});
-passport.deserializeUser((user, done) => {
-    done(null, false);
+    
 });
 
-module.exports = passport;
+passport.deserializeUser(function(user, done) {
+    done(null, user.id);
+    console.log('disconnection session')
+});
+
+module.exports = router;

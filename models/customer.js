@@ -28,6 +28,9 @@ module.exports = (sequelize, DataTypes) => {
   // };
 
   const Customer = sequelize.define('Customer', {
+    googleId: {
+      type: DataTypes.STRING,
+    },
     familyName: {
       type: DataTypes.STRING,
     },
@@ -40,15 +43,12 @@ module.exports = (sequelize, DataTypes) => {
         return `${this.familyName} ${this.fullName}`;
       },
       set(value) {
-        throw new Error(`Do not try to set the `fullName` value!`);
+        throw new Error(`Do not try to set the \`fullName\` value!`);
       }
     },
-    emailValue: {
+    email: {
       type: DataTypes.STRING,
-    },
-    emailType: {
-      type: DataTypes.STRING,
-    },
+    }
   }, {
     paranoid: true
   });
