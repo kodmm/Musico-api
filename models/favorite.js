@@ -30,14 +30,14 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   Favorite.associate = function(models) {
-    Favorite.belongsTo(models.Customer, {
-      foreignKey: 'id',
-      sourceKey: 'customerId'  //?customer_id
-    });
-    Favorite.belongsTo(models.Customer, {
-      foreignKey: 'id',
-      sourceKey: 'songId'
-    });
+    // Favorite.belongsTo(models.Customer, {
+    //   foreignKey: 'id',
+    //   sourceKey: 'customerId'  //?customer_id
+    // });
+    // Favorite.belongsTo(models.Customer, {
+    //   foreignKey: 'id',
+    //   sourceKey: 'songId'
+    // });
   };
 
   return Favorite;

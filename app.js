@@ -10,6 +10,7 @@ var flash = require('connect-flash');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
+var playlistRouer = require('./routes/playlist');
 var app = express();
 
 app.use(logger('dev'));
@@ -39,4 +40,5 @@ const authMiddleWare = (req, res, next) => {
 app.use('/', indexRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/', authRouter);
+app.use('/api/v1/playlist', playlistRouer);
 module.exports = app;

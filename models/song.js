@@ -31,18 +31,18 @@ module.exports = (sequelize, DataTypes) => {
     albumName: DataTypes.STRING,
     albumUrl: DataTypes.STRING,
     genre: DataTypes.STRING,
-    releaseAt: DataTypes.DATE
+    releaseAt: DataTypes.DATE,
   }, {});
 
   Song.associate = function(models) {
     Song.hasMany(models.Favorite, {
       foreginKey: 'song_id',
-      sourceKey: 'id'
+      // sourceKey: 'id'
     });
-    Song.hasMany(models.PlayList, {
-      foreignKey: 'song_id',
-      sourceKey: 'id'
-    })
+    // Song.hasMany(models.Playlist, {
+    //   foreignKey: 'song_id',
+    //   // sourceKey: 'id'
+    // });
   }
   return Song;
 };

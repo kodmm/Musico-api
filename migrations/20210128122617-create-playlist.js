@@ -11,7 +11,8 @@ module.exports = {
       customerId: {
         type: Sequelize.INTEGER,
         references: { model: 'Customers', key: 'id'},
-        onUpdate: 'cascade'
+        onUpdate: 'cascade',
+        allowNull: false
       },
       songId: {
         type: Sequelize.INTEGER,
@@ -21,6 +22,9 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING
+      },
+      isPublic: {
+        type: Sequelize.BOOLEAN,
       },
       createdAt: {
         allowNull: false,

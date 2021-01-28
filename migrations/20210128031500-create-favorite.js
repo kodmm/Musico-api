@@ -19,11 +19,6 @@ module.exports = {
         onUpdate: 'cascade',  
         onDelete: 'cascade' //(任意)連動して自動削除する
       },
-      isPublic: {
-        type: Sequelize.ENUM,
-        values: ['private', 'public']
-
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
