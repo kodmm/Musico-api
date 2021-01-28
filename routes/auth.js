@@ -29,13 +29,14 @@ passport.use(new GoogleStrategy({
 
 
 router.get('/auth/google', 
-    passport.authenticate('google', { scope: ['email', 'profile']}));
+    passport.authenticate('google', { scope: ['email', 'profile']}),
+);
 
 router.get('/auth/google/callback', 
     passport.authenticate('google', { failureRedirect: '/googleapi/failured/login'}),
     function(req, res) {
         
-        console.log(`json:   ${req.user}`);
+        console.log('hogegegege');
         res.json(req.user)
     }
 );
@@ -49,6 +50,12 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(user, done) {
     done(null, user.id);
     console.log('disconnection session')
+});
+
+//log out
+router.get('/auth/logout',(req, res, next) => {
+    req.logout();
+    res.json([{msg: 'Successfully Log out'}]);
 });
 
 module.exports = router;

@@ -53,6 +53,16 @@ module.exports = (sequelize, DataTypes) => {
     paranoid: true
   });
   Customer.associate = function(models) {
+    Customer.hasMany(models.Favorite, {
+      foreignKey: 'customer_id',
+      sourceKey: 'id'
+    });
+
+    Customer.hasMany(models.Playlist, {
+      foreignKey: 'customer_id',
+      sourceKey: 'id'
+    });
+
     // associations can be defined here
   };
   return Customer;
