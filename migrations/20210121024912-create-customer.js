@@ -8,13 +8,16 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
+      googleId: {
+        type: Sequelize.STRING
+      },
+      familyName: {
+        type: Sequelize.STRING
+      },
+      givenName: {
         type: Sequelize.STRING
       },
       email: {
-        type: Sequelize.STRING
-      },
-      rememberToken: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -23,6 +26,9 @@ module.exports = {
       },
       updatedAt: {
         allowNull: false,
+        type: Sequelize.DATE
+      },
+      deletedAt: {
         type: Sequelize.DATE
       }
     });
