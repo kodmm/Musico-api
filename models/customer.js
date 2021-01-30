@@ -54,13 +54,13 @@ module.exports = (sequelize, DataTypes) => {
   });
   Customer.associate = function(models) {
     Customer.hasMany(models.Favorite, {
-      foreignKey: 'customer_id',
-      sourceKey: 'id'
+      foreignKey: 'customerId'
+      
     });
 
     Customer.hasMany(models.Playlist, {
-      foreignKey: 'customer_id',
-      sourceKey: 'id'
+      foreignKey: 'customerId'
+      
     });
 
     // associations can be defined here
