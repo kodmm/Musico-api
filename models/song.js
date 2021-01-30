@@ -39,10 +39,10 @@ module.exports = (sequelize, DataTypes) => {
       foreginKey: 'song_id',
       // sourceKey: 'id'
     });
-    // Song.hasMany(models.Playlist, {
-    //   foreignKey: 'song_id',
-    //   // sourceKey: 'id'
-    // });
+    Song.hasMany(models.Playlist, {
+      foreignKey: 'song_id',
+      // sourceKey: 'id'
+    });
   }
   return Song;
 };
