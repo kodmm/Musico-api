@@ -11,6 +11,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
 var playlistRouer = require('./routes/playlist');
+var favoriteRouter = require('./routes/favorite');
 var app = express();
 
 app.use(logger('dev'));
@@ -41,4 +42,5 @@ app.use('/', indexRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/', authRouter);
 app.use('/api/v1/playlist', playlistRouer);
+app.use('/api/v1/favorite', favoriteRouter);
 module.exports = app;
