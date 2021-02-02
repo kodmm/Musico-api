@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Song.associate = function(models) {
     Song.hasMany(models.Favorite, {
-      foreginKey: 'song_id',
+      foreignKey: 'songId',
       // sourceKey: 'id'
     });
     Song.hasMany(models.Playlist, {

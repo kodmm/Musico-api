@@ -22,12 +22,8 @@ module.exports = (sequelize, DataTypes) => {
   //   modelName: 'Favorite',
   // }); 
   const Favorite = sequelize.define('Favorite', {
-    // customerId: DataTypes.INTEGER,
-    // songId: DataTypes.INTEGER,
-    isPublic: {
-      type: DataTypes.ENUM(['private', 'public']),
-      defaultValue: 0,
-    }
+    customerId: DataTypes.INTEGER,
+    songId: DataTypes.INTEGER,
   }, {});
   Favorite.associate = function(models) {
     // Favorite.belongsTo(models.Customer, {
