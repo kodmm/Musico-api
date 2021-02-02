@@ -15,6 +15,9 @@ module.exports = (sequelize, DataTypes) => {
     songId: {
       type: DataTypes.INTEGER
     },
+    trackId: {
+      type: DataTypes.INTEGER
+    },
     name: {
       type: DataTypes.STRING,
       validate: {

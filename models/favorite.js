@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
   const Favorite = sequelize.define('Favorite', {
     customerId: DataTypes.INTEGER,
     songId: DataTypes.INTEGER,
+    trackId: DataTypes.INTEGER
   }, {});
   Favorite.associate = function(models) {
     // Favorite.belongsTo(models.Customer, {
