@@ -8,20 +8,13 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.createTable('Relations', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      songId: {
-        type: Sequelize.INTEGER
-      },
-      playlistId: {
-        type: Sequelize.INTEGER
-      }
+    await queryInterface.addColumn('Relations', 'createdAt', {
+      type: Sequelize.DATE
     });
+    await queryInterface.addColumn('Relations', 'updatedAt', {
+      type: Sequelize.DATE
+    });
+    
   },
 
   down: async (queryInterface, Sequelize) => {
