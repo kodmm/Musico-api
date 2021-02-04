@@ -37,15 +37,15 @@ module.exports = (sequelize, DataTypes) => {
     givenName: {
       type: DataTypes.STRING,
     },
-    fullName: {
-      type: DataTypes.VIRTUAL,
-      get() {
-        return `${this.familyName} ${this.fullName}`;
-      },
-      set(value) {
-        throw new Error(`Do not try to set the \`fullName\` value!`);
-      }
-    },
+    // fullName: {
+    //   type: DataTypes.VIRTUAL,
+    //   get() {
+    //     return `${this.familyName} ${this.fullName}`;
+    //   },
+    //   set(value) {
+    //     throw new Error(`Do not try to set the \`fullName\` value!`);
+    //   }
+    // },
     email: {
       type: DataTypes.STRING,
     }

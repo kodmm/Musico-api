@@ -12,12 +12,6 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true
       }
     },
-    songId: {
-      type: DataTypes.INTEGER
-    },
-    trackId: {
-      type: DataTypes.INTEGER
-    },
     name: {
       type: DataTypes.STRING,
       validate: {
@@ -31,7 +25,11 @@ module.exports = (sequelize, DataTypes) => {
   },{});
 
   Playlist.associate = function(models) {
-    
+    Playlist.belongsToMany(models.Song, {
+      through: models.Relation,
+      foreignKey: 'playlistId',
+      otherKey: 'songId'
+    })
   };
   return Playlist;
 };
