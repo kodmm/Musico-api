@@ -12,15 +12,25 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-   await queryInterface.bulkInsert('Customers', [{
-     googleId: 12345,
-     familyName: 'Sakurai',
-     givenName: 'Sho',
-     email: 'Sakurai@arashi',
-     createdAt: date,
-     updatedAt: date
+  //  await queryInterface.bulkInsert('Customers', [{
+  //    googleId: 12345,
+  //    familyName: 'Sakurai',
+  //    givenName: 'Sho',
+  //    email: 'Sakurai@arashi',
+  //    createdAt: date,
+  //    updatedAt: date
 
-     }], {});
+  //    }], {});
+  await queryInterface.bulkInsert('Playlists', [{
+    customerId: 2,
+    songId: null,
+    name: 'PowerSong',
+    isPublic: null,
+    createdAt: date,
+    updatedAt: date,
+    trackId: null
+
+    }], {});
   },
 
   down: async (queryInterface, Sequelize) => {
