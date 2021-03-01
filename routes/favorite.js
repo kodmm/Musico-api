@@ -25,7 +25,7 @@ router.post('/', async(req, res, next) => {
              });
         }else{
 
-            const favorite = favoriteCreate(song.id, customer_id)
+            const favorite = favoriteCreate(song.id, track_id, customer_id)
             console.log(favorite);
             res.json({
                 msg: ['Created data song', favorite]
@@ -41,7 +41,7 @@ router.post('/', async(req, res, next) => {
 })
 
 
-const favoriteCreate = async(song_id, track_id,customer_id) => {
+const favoriteCreate = async(song_id, track_id, customer_id) => {
      await db.Favorite.findOrCreate({
         where: { songId: song_id, customerId: customer_id},
         defaults: {
