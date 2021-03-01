@@ -133,6 +133,7 @@ router.patch('/', (req, res, next) => {
     const is_public = req.body.isPublic;
     const id = req.body.id;
     const customer_id = req.body.customer_id
+    console.log(is_public, id)
     db.Playlist.update(
         {isPublic: is_public},
         {where: {id: id} }
